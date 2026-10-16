@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#FAF6EF" />
+  <link rel="icon" href="data:," />
+  <title>HustleGPT — Your AI co-founder</title>
+  <style>
+    :root {
+      --paper: #FAF6EF;
+      --paper-2: #F1E9DC;
+      --ink: #141210;
+      --muted: #625C54;
+      --line: #CFC3B3;
+      --orange: #E8590C;
+      --orange-dark: #B83C00;
+      --amber: #F5A623;
+      --white: #FFFDF8;
+      --shadow: rgba(58, 36, 20, .13);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #181512;
+        --paper-2: #241F1A;
+        --ink: #FAF6EF;
+        --muted: #C9BFB2;
+        --line: #554A3F;
+        --orange: #FF6B1A;
+        --orange-dark: #FF9254;
+        --amber: #F5A623;
+        --white: #201C18;
+        --shadow: rgba(0, 0, 0, .28);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+    }
+    button, a { font: inherit; }
+    a { color: inherit; }
+    ::selection { background: var(--amber); color: #141210; }
+    .skip {
+      position: fixed; left: 14px; top: -80px; z-index: 100;
+      background: var(--ink); color: var(--paper); padding: 10px 14px;
+    }
+    .skip:focus { top: 14px; }
+    .site-nav {
+      position: sticky; top: 0; z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 94%, transparent);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: auto; min-height: 68px; padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .route-mark {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; font-weight: 800; letter-spacing: -.02em;
+    }
+    .route-mark::before {
+      content: ""; display: block; width: 24px; height: 6px; background: var(--orange);
+      transform: skew(-20deg);
+    }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted); padding: 9px 11px;
+      font-size: .91rem; font-weight: 700; border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); }
+    .nav-links a.active { color: var(--ink); border-bottom-color: var(--orange); }
+    .nav-links .nav-cta { margin-left: 8px; color: #fff; background: var(--orange); border: 0; }
+    .nav-links .nav-cta:hover, .nav-links .nav-cta:focus-visible { background: var(--orange-dark); color: #fff; }
+    .menu-button {
+      display: none; width: 44px; height: 44px; border: 1px solid var(--line);
+      background: var(--paper); color: var(--ink); cursor: pointer; font-weight: 800;
+    }
+    main { min-height: 70vh; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    .narrow { width: min(800px, calc(100% - 48px)); margin: 0 auto; }
+    .hero {
+      min-height: 650px; display: grid; align-items: center;
+      border-bottom: 1px solid var(--line); position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: "$100 / 30 DAYS"; position: absolute; right: -20px; top: 110px;
+      font: 800 clamp(3.5rem, 9vw, 8rem)/.85 var(--sans); color: transparent;
+      -webkit-text-stroke: 1px color-mix(in srgb, var(--line) 70%, transparent);
+      transform: rotate(90deg) translateX(100%); transform-origin: right top;
+      pointer-events: none; white-space: nowrap;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 72px; padding: 86px 0 70px; align-items: end; }
+    .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--orange-dark); font-weight: 850; letter-spacing: .04em; text-transform: uppercase; font-size: .78rem; }
+    .eyebrow::before { content: ""; width: 42px; height: 2px; background: var(--orange); }
+    h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 700; letter-spacing: -.045em; line-height: .98; }
+    h1 { font-size: clamp(3.4rem, 8vw, 7.4rem); max-width: 850px; }
+    h2 { font-size: clamp(2.35rem, 5.5vw, 4.8rem); }
+    h3 { font-size: clamp(1.35rem, 2.2vw, 2rem); line-height: 1.08; }
+    .hero h1 em { color: var(--orange); font-style: normal; }
+    .hero-copy { margin: 28px 0 0; max-width: 650px; font-size: clamp(1.08rem, 2vw, 1.35rem); color: var(--muted); }
+    .hero-side { border-top: 7px solid var(--orange); padding-top: 22px; position: relative; z-index: 2; }
+    .hero-side .quote { margin: 0 0 24px; font-family: var(--serif); font-size: 1.65rem; line-height: 1.12; }
+    .origin-nod { margin: 0; padding: 17px 24px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .88rem; text-align: center; }
+    .origin-nod a { color: var(--ink); font-weight: 800; text-underline-offset: 4px; text-decoration-color: var(--orange); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 49px; padding: 12px 20px; text-decoration: none; font-weight: 850; border: 2px solid var(--ink); transition: background .15s, color .15s, transform .15s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--orange); color: #fff; border-color: var(--orange); }
+    .btn-primary:hover { background: var(--orange-dark); border-color: var(--orange-dark); }
+    .btn-secondary { background: transparent; }
+    .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+    .section { padding: 100px 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: .55fr 1.45fr; gap: 50px; align-items: start; margin-bottom: 52px; }
+    .section-num { font-size: .8rem; font-weight: 900; letter-spacing: .12em; color: var(--orange-dark); }
+    .lead { color: var(--muted); font-size: 1.2rem; max-width: 700px; }
+    .story-line { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); }
+    .story-item { padding: 24px 22px 28px 0; border-right: 1px solid var(--line); }
+    .story-item + .story-item { padding-left: 22px; }
+    .story-item:last-child { border-right: 0; }
+    .year { font: 700 2rem var(--serif); color: var(--orange-dark); }
+    .story-item p { margin: 12px 0 0; color: var(--muted); }
+    .method-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: stage; }
+    .method-card { counter-increment: stage; min-height: 310px; padding: 30px 24px; border: 1px solid var(--line); background: var(--white); position: relative; }
+    .method-card + .method-card { border-left: 0; }
+    .method-card::after { content: "0" counter(stage); position: absolute; right: 15px; bottom: 5px; font: 800 4.5rem var(--sans); color: color-mix(in srgb, var(--line) 35%, transparent); }
+    .method-card .days { color: var(--orange-dark); font-weight: 850; font-size: .84rem; }
+    .method-card h3 { margin: 50px 0 16px; }
+    .method-card p { color: var(--muted); position: relative; z-index: 1; }
+    .orange-band { background: var(--orange); color: #fff; }
+    .orange-band .band-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 70px; align-items: center; padding: 78px 0; }
+    .orange-band h2 { color: #fff; }
+    .orange-band p { font-size: 1.22rem; color: #fff; opacity: .94; }
+    .orange-band .btn { border-color: #fff; color: #fff; }
+    .orange-band .btn:hover { background: #fff; color: #141210; }
+    .ladder { border-top: 1px solid var(--ink); }
+    .ladder-row { display: grid; grid-template-columns: 150px 1fr 180px; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); align-items: center; }
+    .ladder-row .tier { font-weight: 900; text-transform: uppercase; letter-spacing: .08em; font-size: .76rem; color: var(--orange-dark); }
+    .ladder-row strong { font-family: var(--serif); font-size: 1.35rem; }
+    .ladder-row .price { text-align: right; font-weight: 850; }
+    .assumption { display: block; color: var(--muted); font-size: .72rem; font-weight: 650; }
+    .page-hero { padding: 90px 0 70px; border-bottom: 1px solid var(--line); }
+    .page-hero h1 { font-size: clamp(3.3rem, 7vw, 6.6rem); margin-top: 16px; }
+    .page-hero .intro { max-width: 720px; margin: 25px 0 0; color: var(--muted); font-size: 1.22rem; }
+    .stage-detail { display: grid; grid-template-columns: 240px 1fr; gap: 52px; padding: 58px 0; border-bottom: 1px solid var(--line); }
+    .stage-index { color: var(--orange-dark); font-weight: 900; font-size: 1rem; }
+    .stage-index span { display: block; color: var(--muted); font-weight: 650; margin-top: 8px; }
+    .stage-body h2 { font-size: clamp(2.4rem, 5vw, 4rem); }
+    .stage-body > p { color: var(--muted); font-size: 1.15rem; max-width: 700px; }
+    .done-box { margin-top: 30px; border-top: 3px solid var(--orange); padding-top: 15px; display: flex; gap: 16px; }
+    .done-box b { color: var(--orange-dark); white-space: nowrap; }
+    .gate { margin-top: 30px; padding: 26px; background: var(--ink); color: var(--paper); }
+    .gate b { color: var(--amber); }
+    .challenge-layout { display: grid; grid-template-columns: 1fr 320px; gap: 70px; align-items: start; }
+    .rules { list-style: none; margin: 0; padding: 0; counter-reset: rule; }
+    .rules li { counter-increment: rule; display: grid; grid-template-columns: 54px 1fr; gap: 22px; padding: 26px 0; border-top: 1px solid var(--line); font-size: 1.13rem; }
+    .rules li::before { content: counter(rule, decimal-leading-zero); font: 700 1.25rem var(--serif); color: var(--orange-dark); }
+    .commit-card { position: sticky; top: 92px; padding: 28px; background: var(--ink); color: var(--paper); box-shadow: 10px 10px 0 var(--amber); }
+    .commit-card h3 { color: var(--paper); }
+    .commit-card p { color: color-mix(in srgb, var(--paper) 78%, transparent); }
+    .commit-card .btn { width: 100%; color: #fff; border-color: var(--orange); }
+    .month-track { display: grid; grid-template-columns: repeat(30, 1fr); gap: 4px; margin: 34px 0 18px; }
+    .day { height: 54px; display: grid; place-items: center; background: var(--paper-2); font-size: .72rem; font-weight: 850; }
+    .day:nth-child(-n+5) { border-top: 6px solid var(--amber); }
+    .day:nth-child(n+6):nth-child(-n+12) { border-top: 6px solid var(--orange); }
+    .day:nth-child(n+13):nth-child(-n+22) { border-top: 6px solid var(--ink); }
+    .day:nth-child(n+23) { border-top: 6px solid var(--orange-dark); }
+    .finish-line { margin-top: 46px; padding: 35px 0 35px 34px; border-left: 8px solid var(--orange); font: 700 clamp(1.8rem, 4vw, 3.4rem)/1.08 var(--serif); }
+    .feed { display: grid; gap: 20px; }
+    .feed-card { display: grid; grid-template-columns: 145px 1fr 180px; gap: 26px; align-items: center; padding: 28px 0; border-top: 1px solid var(--ink); }
+    .sample-tag { align-self: start; display: inline-block; width: fit-content; padding: 5px 8px; background: var(--amber); color: #141210; font-weight: 900; font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; }
+    .feed-card h3 { margin-bottom: 10px; }
+    .feed-card p { margin: 0; color: var(--muted); }
+    .feed-meta { font-size: .84rem; color: var(--muted); }
+    .feed-meta b { display: block; color: var(--ink); font-size: 1.05rem; }
+    .proof-note { margin-top: 40px; padding: 30px; background: var(--paper-2); text-align: center; }
+    .proof-note p { margin: 0 0 18px; font-family: var(--serif); font-size: 1.5rem; }
+    .faq-list { border-top: 1px solid var(--ink); }
+    details { border-bottom: 1px solid var(--line); }
+    summary { list-style: none; cursor: pointer; padding: 26px 50px 26px 0; font: 700 1.28rem var(--serif); position: relative; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; position: absolute; right: 8px; top: 22px; color: var(--orange-dark); font: 500 1.8rem var(--sans); }
+    details[open] summary::after { content: "−"; }
+    details .answer { padding: 0 54px 28px 0; color: var(--muted); max-width: 760px; }
+    .footer { padding: 52px 0 30px; background: var(--ink); color: var(--paper); }
+    .footer-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 80px; }
+    .footer .signoff { font: 700 clamp(2rem, 4vw, 3.6rem)/1 var(--serif); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 12px 20px; align-content: start; }
+    .footer-links a { color: var(--paper); text-decoration-color: var(--orange); text-underline-offset: 4px; }
+    .disclaimer { margin-top: 45px; padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--paper) 22%, transparent); color: color-mix(in srgb, var(--paper) 64%, transparent); font-size: .78rem; }
+    .route-error { padding: 120px 24px; text-align: center; }
+    @media (max-width: 900px) {
+      .hero-grid, .orange-band .band-grid, .challenge-layout, .footer-grid { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero-side { max-width: 560px; }
+      .story-line { grid-template-columns: 1fr 1fr; }
+      .story-item:nth-child(2) { border-right: 0; }
+      .story-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .method-strip { grid-template-columns: 1fr 1fr; }
+      .method-card + .method-card { border-left: 1px solid var(--line); }
+      .method-card:nth-child(2), .method-card:nth-child(4) { border-left: 0; }
+      .method-card:nth-child(n+3) { border-top: 0; }
+      .commit-card { position: static; }
+      .month-track { grid-template-columns: repeat(10, 1fr); }
+    }
+    @media (max-width: 720px) {
+      .nav-inner { padding: 0 18px; min-height: 62px; }
+      .menu-button { display: block; }
+      .nav-links { display: none; position: absolute; left: 0; right: 0; top: 62px; padding: 12px 18px 18px; flex-direction: column; align-items: stretch; background: var(--paper); border-bottom: 1px solid var(--line); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 4px; }
+      .nav-links .nav-cta { margin: 4px 0 0; padding: 12px; text-align: center; }
+      .wrap, .narrow { width: min(100% - 32px, 1120px); }
+      .hero-grid { padding: 62px 0 50px; gap: 48px; }
+      .hero::after { display: none; }
+      h1 { font-size: clamp(3rem, 15vw, 5rem); }
+      .section { padding: 70px 0; }
+      .section-head { grid-template-columns: 1fr; gap: 15px; margin-bottom: 36px; }
+      .story-line, .method-strip { grid-template-columns: 1fr; }
+      .story-item { border-right: 0; border-top: 1px solid var(--line); padding: 22px 0 !important; }
+      .story-item:first-child { border-top: 0; }
+      .method-card, .method-card:nth-child(2), .method-card:nth-child(4) { border: 1px solid var(--line); border-top: 0; min-height: 250px; }
+      .method-card:first-child { border-top: 1px solid var(--line); }
+      .method-card h3 { margin-top: 28px; }
+      .ladder-row { grid-template-columns: 1fr auto; gap: 5px 15px; }
+      .ladder-row .tier { grid-column: 1 / -1; }
+      .stage-detail { grid-template-columns: 1fr; gap: 18px; padding: 42px 0; }
+      .page-hero { padding: 65px 0 48px; }
+      .feed-card { grid-template-columns: 1fr; gap: 14px; }
+      .finish-line { padding-left: 20px; }
+    }
+    @media (max-width: 420px) {
+      .route-mark span { display: none; }
+      .month-track { grid-template-columns: repeat(6, 1fr); }
+      .day { height: 45px; }
+      .ladder-row { grid-template-columns: 1fr; }
+      .ladder-row .price { text-align: left; margin-top: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="route-mark" href="#home" aria-label="Go to home"><span>Your AI co-founder</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="nav-links" aria-label="Primary navigation">
+        <a href="#home" data-route="home">Home</a>
+        <a href="#method" data-route="method">The Method</a>
+        <a href="#challenge" data-route="challenge">The Challenge</a>
+        <a href="#about" data-route="about">About</a>
+        <a href="#proof" data-route="proof">Proof</a>
+        <a href="#faq" data-route="faq">FAQ</a>
+        <a class="nav-cta" href="mailto:hello@hustlegpt.com?subject=I%27m%20in%20for%20the%20%24100%20Challenge">Start free</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section id="home" class="page" aria-labelledby="home-title">
+      <div class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="eyebrow">$100. 30 days. One AI co-founder.</div>
+            <h1 id="home-title">Give your idea an <em>AI co-founder.</em></h1>
+            <p class="hero-copy">The AI plans. You move. The clock runs. Turn a $100 starting budget into as much as possible—legally, honestly—and finish with the numbers to prove what happened.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="mailto:hello@hustlegpt.com?subject=I%27m%20in%20for%20the%20%24100%20Challenge&body=I%27m%20ready%20to%20build.%20Please%20send%20me%20the%20next%20steps.">Start the clock</a>
+              <a class="btn btn-secondary" href="#method">See the Method</a>
+            </div>
+          </div>
+          <aside class="hero-side" aria-label="HustleGPT mission">
+            <p class="quote">“AI makes the plan. You are its hands in the world.”</p>
+            <strong>$100 to start</strong><br />
+            <strong>30 days to move</strong><br />
+            <strong>One honest accounting at the end</strong>
+          </aside>
+        </div>
+      </div>
+      <p class="origin-nod">Born from the viral 2023 experiment. Now a real product. <a href="#about">Read the story →</a></p>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <div class="section-num">01 / THE METHOD</div>
+            <div><h2>The AI plans.<br />You move.</h2><p class="lead">Four stages. Hard evidence. The clock runs while every idea earns the right to live—or gets an honest kill.</p></div>
+          </div>
+          <div class="method-strip">
+            <article class="method-card"><span class="days">Days 1–5</span><h3>Idea</h3><p>Match your skills, budget, and constraints to three offers scored on demand evidence.</p></article>
+            <article class="method-card"><span class="days">Days 6–12</span><h3>Validate</h3><p>Run ten customer conversations, publish one landing page, then kill or commit.</p></article>
+            <article class="method-card"><span class="days">Days 13–22</span><h3>Build</h3><p>Create the offer, price, and minimum viable delivery with AI and human review.</p></article>
+            <article class="method-card"><span class="days">Days 23–30</span><h3>Launch</h3><p>Find the first ten customers. Finish with documented revenue or a documented kill.</p></article>
+          </div>
+          <div class="actions"><a class="btn btn-secondary" href="#method">Put the Method to work</a></div>
+        </div>
+      </section>
+
+      <section class="orange-band">
+        <div class="wrap band-grid">
+          <div><h2>$100. 30 days.<br />One AI co-founder.</h2><p>One goal: turn the starting budget into as much as possible—nothing illegal, nothing hidden. AI plans; you move; the market answers.</p></div>
+          <div><a class="btn" href="#challenge">Accept the challenge →</a></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <div class="section-num">02 / PRODUCT LADDER</div>
+            <div><h2>Start free.<br />Add leverage.</h2><p class="lead">Each level removes the next bottleneck—from knowing what to do, to doing it faster, to having expert accountability.</p></div>
+          </div>
+          <div class="ladder">
+            <div class="ladder-row"><span class="tier">Challenge</span><strong>The $100 Challenge</strong><span class="price">Free</span></div>
+            <div class="ladder-row"><span class="tier">Playbook</span><strong>HustleGPT Playbook</strong><span class="price">$39<span class="assumption">working assumption</span></span></div>
+            <div class="ladder-row"><span class="tier">Recipes</span><strong>AI Agent Recipes</strong><span class="price">$97<span class="assumption">working assumption</span></span></div>
+            <div class="ladder-row"><span class="tier">Next phases</span><strong>Founder Cohort + Launch Intensive</strong><span class="price">Coming later</span></div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="about" class="page" aria-labelledby="about-title">
+      <div class="page-hero">
+        <div class="wrap">
+          <div class="eyebrow">About HustleGPT</div>
+          <h1 id="about-title">Three years early.<br />Right on time.</h1>
+          <p class="intro">The name began as a bet on what AI could become, found a life of its own in internet culture, then waited for the technology to catch up.</p>
+        </div>
+      </div>
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <div class="section-num">THE ORIGIN</div>
+            <div>
+              <h2>The name was waiting<br />for the tools.</h2>
+              <p class="lead">The full story runs from the first GPT naming rush to a product built for AI agents that can finally help execute the work.</p>
+            </div>
+          </div>
+          <div class="story-line">
+            <article class="story-item"><div class="year">Dec 2022</div><p>hustlegpt.com is purchased during the first rush to name what GPT could become.</p></article>
+            <article class="story-item"><div class="year">Mar 2023</div><p>The viral $100 HustleGPT experiment makes the name shorthand for an “AI co-founder” in internet culture.</p></article>
+            <article class="story-item"><div class="year">2023–25</div><p>The domain remains parked while the name’s prior life continues to travel across the internet.</p></article>
+            <article class="story-item"><div class="year">2026</div><p>AI agents can carry out multi-step work. The original stunt can become a real product for entrepreneurs.</p></article>
+          </div>
+        </div>
+      </section>
+      <section class="orange-band">
+        <div class="wrap band-grid">
+          <div><h2>Why now?</h2><p>In 2023, the premise was provocative: give AI a budget and ask it to build. In 2026, agents can support research, production, workflows, and launch execution. HustleGPT turns that possibility into a disciplined Method with a human founder making the calls.</p></div>
+          <div><a class="btn" href="#challenge">Start the $100 Challenge →</a></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="narrow">
+          <div class="section-head">
+            <div class="section-num">WHAT IT MEANS NOW</div>
+            <div><h2>Not nostalgia.<br />A working promise.</h2><p class="lead">HustleGPT means an AI co-founder that helps move an idea through evidence, offer, and launch. The lore explains the name. The Method proves what it can do now.</p><div class="actions"><a class="btn btn-secondary" href="#method">See the Method</a></div></div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="method" class="page" aria-labelledby="method-title">
+      <div class="page-hero"><div class="wrap"><div class="eyebrow">The HustleGPT Method</div><h1 id="method-title">The AI plans.<br />You move.</h1><p class="intro">Idea → Validate → Build → Launch. The clock runs for 30 days. Every decision leaves evidence; every outcome gets an honest accounting.</p></div></div>
+      <div class="wrap">
+        <article class="stage-detail"><div class="stage-index">01 <span>Days 1–5</span></div><div class="stage-body"><h2>Idea</h2><p>The AI co-founder builds the plan from your skills, $100 budget, available time, constraints, and unfair advantages. You become its hands in the physical world—testing three candidate offers against real demand, not excitement.</p><div class="done-box"><b>Done means</b><span>Three offers, scored and ranked.</span></div></div></article>
+        <article class="stage-detail"><div class="stage-index">02 <span>Days 6–12</span></div><div class="stage-body"><h2>Validate</h2><p>Conduct ten customer conversations and put one clear offer on a landing page. The objective is not applause; it is learning whether the problem is urgent enough for someone to act.</p><div class="gate"><b>Day 12: kill or commit.</b> Keep the offer only when the evidence earns another ten days of work.</div><div class="done-box"><b>Done means</b><span>A committed offer—or a documented kill.</span></div></div></article>
+        <article class="stage-detail"><div class="stage-index">03 <span>Days 13–22</span></div><div class="stage-body"><h2>Build</h2><p>Turn the validated promise into an offer, a price, and the simplest viable delivery. Use AI to accelerate research, writing, workflows, and production. Keep humans in review. Do not polish what the market has not asked for.</p><div class="done-box"><b>Done means</b><span>A shippable offer a customer can understand and receive.</span></div></div></article>
+        <article class="stage-detail"><div class="stage-index">04 <span>Days 23–30</span></div><div class="stage-body"><h2>Launch</h2><p>Ask for the sale. Reach the first ten prospective customers, record objections, revise the pitch, and track the result in public. The market—not the co-founder—gets the final vote.</p><div class="done-box"><b>Done means</b><span>Documented revenue or a documented kill. Both count.</span></div><div class="actions"><a class="btn btn-primary" href="mailto:hello@hustlegpt.com?subject=I%27m%20in%20for%20the%20%24100%20Challenge">Put your co-founder to work</a></div></div></article>
+      </div>
+    </section>
+
+    <section id="challenge" class="page" aria-labelledby="challenge-title">
+      <div class="page-hero"><div class="wrap"><div class="eyebrow">The $100 Challenge</div><h1 id="challenge-title">$100. 30 days.<br />One AI co-founder.</h1><p class="intro">One goal: turn the budget into as much as possible. Nothing illegal. The AI plans, you move, and the final accounting stays honest.</p></div></div>
+      <section class="section"><div class="wrap challenge-layout"><div><div class="section-head"><div class="section-num">THE RULES</div><div><h2>The plan becomes physical.</h2></div></div><ol class="rules"><li><span>Start with a maximum of $100.</span></li><li><span>Finish in 30 days.</span></li><li><span>Use AI as your co-founder—not as an excuse to stop thinking.</span></li><li><span>You are the AI’s hands in the physical world: interviews, judgment, outreach, and delivery.</span></li><li><span>Nothing illegal, deceptive, unsafe, or exploitative.</span></li><li><span>Build in public. Share the work, evidence, decisions, and final accounting.</span></li></ol></div><aside class="commit-card"><h3>Start the clock.</h3><p>$100. 30 days. One AI co-founder. Tell us you are in and we will send the next-step details.</p><a class="btn btn-primary" href="mailto:hello@hustlegpt.com?subject=I%27m%20in%20for%20the%20%24100%20Challenge&body=I%27m%20ready%20to%20build.%20Please%20send%20me%20the%20next%20steps.">Accept the challenge</a></aside></div></section>
+      <section class="section"><div class="wrap"><div class="section-head"><div class="section-num">THE CLOCK</div><div><h2>The clock runs.</h2><p class="lead">Thirty marked days. No endless ideation. No hiding in the build. Revenue or a kill—document it all.</p></div></div><div class="month-track" aria-label="30-day challenge timeline"><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div></div><div class="finish-line">“Documented revenue or a documented kill—both count.”</div></div></section>
+    </section>
+
+    <section id="proof" class="page" aria-labelledby="proof-title">
+      <div class="page-hero"><div class="wrap"><div class="eyebrow">The build feed</div><h1 id="proof-title">Show the work.</h1><p class="intro">This feed is waiting for real challenge builds. The entries below demonstrate the format only—they are examples, not participant results.</p></div></div>
+      <section class="section"><div class="wrap"><div class="feed">
+        <article class="feed-card"><span class="sample-tag">Example only</span><div><h3>Example build—your story here</h3><p>A participant identifies an urgent problem, runs ten interviews, and posts the evidence that shaped the offer.</p></div><div class="feed-meta"><b>Day 12</b>Kill or commit decision</div></article>
+        <article class="feed-card"><span class="sample-tag">Example only</span><div><h3>Example build—first customer</h3><p>A participant shares the offer, the outreach that worked, the delivery promise, and the first documented sale.</p></div><div class="feed-meta"><b>Day 25</b>Launch evidence</div></article>
+        <article class="feed-card"><span class="sample-tag">Example only</span><div><h3>Example build—smart kill</h3><p>A participant documents the signals that disproved the idea and what the failed test made clear for the next attempt.</p></div><div class="feed-meta"><b>Day 30</b>Documented kill</div></article>
+      </div><div class="proof-note"><p>Your build could be the first real entry.</p><a class="btn btn-primary" href="mailto:hello@hustlegpt.com?subject=I%27m%20in%20for%20the%20%24100%20Challenge">Join the free challenge</a></div></div></section>
+    </section>
+
+    <section id="faq" class="page" aria-labelledby="faq-title">
+      <div class="page-hero"><div class="narrow"><div class="eyebrow">FAQ</div><h1 id="faq-title">Straight answers.</h1><p class="intro">What the challenge is, what it costs, and what “AI co-founder” actually means.</p></div></div>
+      <section class="section"><div class="narrow"><div class="faq-list">
+        <details><summary>What is HustleGPT?</summary><div class="answer">HustleGPT is an AI co-founder experience for entrepreneurs. Its core system—the HustleGPT Method—moves an idea through validation, building, and launch on a 30-day clock. The focus is execution and evidence, not passively consuming information.</div></details>
+        <details><summary>What is it not?</summary><div class="answer">It is not a promise of easy money, a passive-income shortcut, or a substitute for your judgment. AI can accelerate the work, but you remain responsible for interviews, decisions, legality, quality, and delivery.</div></details>
+        <details><summary>Who is it for?</summary><div class="answer">It is for aspiring and active entrepreneurs who are willing to test a small offer in public, speak with customers, follow a disciplined process, and accept the market’s answer—even when the right answer is to stop.</div></details>
+        <details><summary>What does it cost?</summary><div class="answer">The $100 Challenge is free to join; the $100 is your maximum starting build budget, not a fee. The HustleGPT Playbook is planned at $39 and AI Agent Recipes at $97. Both prices are working assumptions and may change before release.</div></details>
+        <details><summary>How does the $100 Challenge work?</summary><div class="answer">You start with no more than $100 and move through four stages across 30 days: Idea (days 1–5), Validate (days 6–12), Build (days 13–22), and Launch (days 23–30). AI works as a co-founder; you do the human work; you build in public. Completion means documented revenue or a documented kill.</div></details>
+        <details><summary>Do I need technical experience?</summary><div class="answer">No. The challenge is about choosing and testing a useful offer, not proving you can code. Your offer may be a service, a simple digital product, or another legal business that fits the rules and budget.</div></details>
+        <details><summary>Is HustleGPT affiliated with OpenAI?</summary><div class="answer">No. HustleGPT is an independent brand. It is not affiliated with, endorsed by, or sponsored by OpenAI.</div></details>
+        <details><summary>How do I join?</summary><div class="answer">Email <a href="mailto:hello@hustlegpt.com?subject=I%27m%20in%20for%20the%20%24100%20Challenge">hello@hustlegpt.com</a> with the subject “I’m in for the $100 Challenge.” The challenge is free.</div></details>
+      </div></div></section>
+    </section>
+
+    <section id="not-found" class="page route-error"><h2>That page is not part of the challenge.</h2><p><a href="#home">Return home</a></p></section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="signoff">Stop planning.<br />Start proving.</div>
+        <div class="footer-links"><a href="#method">The Method</a><a href="#challenge">The Challenge</a><a href="#about">About</a><a href="#proof">Proof</a><a href="#faq">FAQ</a><a href="mailto:hello@hustlegpt.com">hello@hustlegpt.com</a></div>
+      </div>
+      <div class="disclaimer">HustleGPT is an independent brand and is not affiliated with, endorsed by, or sponsored by OpenAI. “GPT” is used descriptively in the brand name; OpenAI and related marks belong to their respective owners. All product prices shown beyond the free challenge are working assumptions.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+      var validRoutes = ["home", "method", "challenge", "about", "proof", "faq"];
+      var pages = document.querySelectorAll(".page");
+      var links = document.querySelectorAll("[data-route]");
+      var menuButton = document.querySelector(".menu-button");
+      var nav = document.querySelector(".nav-links");
+
+      function route() {
+        var name = window.location.hash.replace(/^#/, "") || "home";
+        var valid = validRoutes.indexOf(name) !== -1;
+        pages.forEach(function (page) { page.classList.toggle("active", page.id === (valid ? name : "not-found")); });
+        links.forEach(function (link) {
+          var active = valid && link.getAttribute("data-route") === name;
+          link.classList.toggle("active", active);
+          if (active) { link.setAttribute("aria-current", "page"); } else { link.removeAttribute("aria-current"); }
+        });
+        nav.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        window.scrollTo(0, 0);
+        var current = document.getElementById(valid ? name : "not-found");
+        if (current) { document.title = (valid && name !== "home" ? current.querySelector("h1, h2").textContent + " — " : "") + "HustleGPT"; }
+      }
+
+      menuButton.addEventListener("click", function () {
+        var open = nav.classList.toggle("open");
+        menuButton.setAttribute("aria-expanded", String(open));
+      });
+      window.addEventListener("hashchange", route);
+      route();
+    }());
+  </script>
+</body>
+</html>
