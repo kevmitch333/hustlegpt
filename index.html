@@ -196,6 +196,92 @@
     summary::after { content: "+"; position: absolute; right: 8px; top: 22px; color: var(--orange-dark); font: 500 1.8rem var(--sans); }
     details[open] summary::after { content: "−"; }
     details .answer { padding: 0 54px 28px 0; color: var(--muted); max-width: 760px; }
+    /* Co-founder mission console */
+    .console-shell { border: 1px solid var(--ink); background: var(--white); box-shadow: 12px 12px 0 var(--amber); }
+    .console-topline { display: flex; justify-content: space-between; gap: 24px; align-items: center; padding: 16px 20px; background: var(--ink); color: var(--paper); }
+    .console-topline strong { letter-spacing: .04em; text-transform: uppercase; font-size: .82rem; }
+    .console-topline span { color: color-mix(in srgb, var(--paper) 72%, transparent); font-size: .8rem; }
+    .console-stepper { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--ink); }
+    .console-step { min-width: 0; padding: 18px 20px; border: 0; border-right: 1px solid var(--line); background: var(--paper-2); color: var(--muted); text-align: left; cursor: default; }
+    .console-step:last-child { border-right: 0; }
+    .console-step b { display: block; color: inherit; font-size: .73rem; letter-spacing: .08em; text-transform: uppercase; }
+    .console-step span { display: block; margin-top: 3px; font-family: var(--serif); font-size: 1.12rem; font-weight: 700; }
+    .console-step.active { background: var(--white); color: var(--ink); box-shadow: inset 0 -5px 0 var(--orange); }
+    .console-step.complete { color: var(--ink); cursor: pointer; }
+    .console-panel { display: none; padding: 42px; }
+    .console-panel.active { display: block; }
+    .console-panel-head { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: end; margin-bottom: 34px; }
+    .console-panel-head h2 { font-size: clamp(2.2rem, 4.5vw, 4rem); }
+    .console-panel-head p { margin: 10px 0 0; max-width: 660px; color: var(--muted); }
+    .mission-code { color: var(--orange-dark); font-weight: 900; font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; }
+    .question-progress { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; margin-bottom: 24px; }
+    .progress-track { height: 8px; background: var(--paper-2); overflow: hidden; }
+    .progress-fill { width: 16.666%; height: 100%; background: var(--orange); transition: width .2s ease; }
+    .progress-copy { color: var(--muted); font-size: .78rem; font-weight: 800; }
+    .interview-frame { display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: start; }
+    .ai-bubble { padding: 18px; background: var(--ink); color: var(--paper); font-family: var(--serif); font-size: 1.14rem; line-height: 1.25; }
+    .ai-bubble b { display: block; margin-bottom: 8px; color: var(--amber); font: 850 .7rem var(--sans); letter-spacing: .09em; text-transform: uppercase; }
+    .interview-question { display: none; }
+    .interview-question.active { display: block; }
+    .interview-question label, .field-label { display: block; margin-bottom: 12px; font: 700 clamp(1.45rem, 3vw, 2.25rem)/1.08 var(--serif); letter-spacing: -.03em; }
+    .field-help { margin: 0 0 16px; color: var(--muted); }
+    .console-input, .console-textarea, .console-select { width: 100%; border: 1px solid var(--line); border-radius: 0; background: var(--paper); color: var(--ink); padding: 15px 16px; font: 700 1rem var(--sans); }
+    .console-input:focus, .console-textarea:focus, .console-select:focus, .score-range:focus-visible { outline: 3px solid color-mix(in srgb, var(--amber) 68%, transparent); outline-offset: 2px; border-color: var(--ink); }
+    .console-textarea { min-height: 112px; resize: vertical; }
+    .input-unit { display: grid; grid-template-columns: 1fr auto; align-items: stretch; max-width: 360px; }
+    .input-unit .console-input { min-width: 0; }
+    .input-unit span { display: grid; place-items: center; padding: 0 15px; border: 1px solid var(--line); border-left: 0; background: var(--paper-2); color: var(--muted); font-weight: 800; }
+    .console-actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 34px; }
+    .console-actions .btn { cursor: pointer; }
+    .btn-quiet { background: transparent; color: var(--ink); }
+    .btn-quiet[hidden] { display: none; }
+    .idea-grid { display: grid; gap: 22px; }
+    .idea-card { border-top: 5px solid var(--ink); padding: 24px; background: var(--paper); }
+    .idea-card.active-idea { border-top-color: var(--orange); }
+    .idea-card-head { display: grid; grid-template-columns: 52px 1fr auto; gap: 14px; align-items: center; margin-bottom: 22px; }
+    .idea-number { font: 700 1.7rem var(--serif); color: var(--orange-dark); }
+    .idea-card .console-input { background: var(--white); }
+    .score-total { text-align: right; min-width: 82px; }
+    .score-total b { display: block; font: 700 1.75rem var(--serif); }
+    .score-total span { color: var(--muted); font-size: .7rem; font-weight: 800; text-transform: uppercase; }
+    .score-list { display: grid; grid-template-columns: 1fr 1fr; gap: 13px 24px; }
+    .score-row { display: grid; grid-template-columns: minmax(128px, 1fr) 1.1fr 26px; gap: 12px; align-items: center; }
+    .score-row label { color: var(--muted); font-size: .84rem; font-weight: 750; }
+    .score-range { width: 100%; accent-color: var(--orange); }
+    .score-output { text-align: center; font-weight: 900; }
+    .verdict-line { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .verdict { min-width: 84px; padding: 7px 10px; text-align: center; color: #fff; background: var(--ink); font-size: .72rem; font-weight: 950; letter-spacing: .08em; }
+    .verdict.pursue { background: var(--orange); }
+    .verdict.test { background: var(--amber); color: #141210; }
+    .verdict.kill { background: var(--ink); }
+    .verdict-copy { margin: 0; color: var(--muted); font-size: .88rem; }
+    .winner-box { margin-top: 26px; padding: 24px; border: 3px solid var(--orange); display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; background: var(--white); }
+    .winner-box .mission-code { margin-bottom: 5px; }
+    .winner-box h3 { font-size: clamp(1.55rem, 3vw, 2.35rem); }
+    .winner-box p { margin: 8px 0 0; color: var(--muted); }
+    .winner-score { font: 700 2.7rem var(--serif); color: var(--orange-dark); white-space: nowrap; }
+    .plan-brief { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; padding: 26px; margin-bottom: 30px; background: var(--ink); color: var(--paper); }
+    .plan-brief h3 { color: var(--paper); margin-top: 6px; font-size: clamp(1.8rem, 3vw, 2.7rem); }
+    .plan-brief p { margin: 8px 0 0; color: color-mix(in srgb, var(--paper) 76%, transparent); }
+    .plan-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: center; }
+    .plan-fact { padding-top: 10px; border-top: 1px solid color-mix(in srgb, var(--paper) 28%, transparent); }
+    .plan-fact b { display: block; color: var(--amber); font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; }
+    .plan-fact span { display: block; margin-top: 3px; font-weight: 800; }
+    .plan-stage { margin-top: 34px; }
+    .plan-stage-head { display: grid; grid-template-columns: 96px 1fr; gap: 18px; align-items: end; padding-bottom: 12px; border-bottom: 3px solid var(--ink); }
+    .plan-stage-head .stage-days { color: var(--orange-dark); font-size: .75rem; font-weight: 900; letter-spacing: .07em; text-transform: uppercase; }
+    .plan-stage-head h3 { font-size: 1.9rem; }
+    .plan-days { display: grid; grid-template-columns: 1fr 1fr; }
+    .plan-day { display: grid; grid-template-columns: 58px 1fr; gap: 14px; padding: 22px 18px 22px 0; border-bottom: 1px solid var(--line); }
+    .plan-day:nth-child(odd) { border-right: 1px solid var(--line); }
+    .plan-day:nth-child(even) { padding-left: 18px; }
+    .plan-day-num { color: var(--orange-dark); font: 700 1.22rem var(--serif); }
+    .plan-day h4 { margin: 0 0 8px; font-size: 1rem; line-height: 1.35; }
+    .plan-day p { margin: 0; color: var(--muted); font-size: .87rem; }
+    .plan-day p b { color: var(--ink); }
+    .plan-save { display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; margin-top: 38px; padding-top: 24px; border-top: 1px solid var(--ink); }
+    .plan-save p { margin: 0; color: var(--muted); }
+    .empty-plan { padding: 50px 24px; border: 1px dashed var(--line); text-align: center; color: var(--muted); }
     .footer { padding: 52px 0 30px; background: var(--ink); color: var(--paper); }
     .footer-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 80px; }
     .footer .signoff { font: 700 clamp(2rem, 4vw, 3.6rem)/1 var(--serif); }
@@ -216,6 +302,10 @@
       .method-card:nth-child(n+3) { border-top: 0; }
       .commit-card { position: static; }
       .month-track { grid-template-columns: repeat(10, 1fr); }
+      .score-list, .plan-days { grid-template-columns: 1fr; }
+      .plan-day:nth-child(odd) { border-right: 0; }
+      .plan-day:nth-child(even) { padding-left: 0; }
+      .plan-brief { grid-template-columns: 1fr; }
     }
     @media (max-width: 720px) {
       .nav-inner { padding: 0 18px; min-height: 62px; }
@@ -242,6 +332,23 @@
       .page-hero { padding: 65px 0 48px; }
       .feed-card { grid-template-columns: 1fr; gap: 14px; }
       .finish-line { padding-left: 20px; }
+      .console-shell { box-shadow: 7px 7px 0 var(--amber); }
+      .console-topline { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .console-step { padding: 14px 10px; }
+      .console-step span { font: 800 .72rem var(--sans); text-transform: uppercase; letter-spacing: .04em; }
+      .console-panel { padding: 28px 18px; }
+      .console-panel-head, .interview-frame, .winner-box, .plan-save { grid-template-columns: 1fr; }
+      .console-panel-head { gap: 12px; }
+      .ai-bubble { max-width: 360px; }
+      .idea-card { padding: 20px 14px; }
+      .idea-card-head { grid-template-columns: 34px 1fr; }
+      .score-total { grid-column: 2; text-align: left; display: flex; gap: 7px; align-items: baseline; }
+      .score-total b { font-size: 1.35rem; }
+      .score-row { grid-template-columns: 1fr 62px 24px; }
+      .winner-score { font-size: 2rem; }
+      .plan-facts { grid-template-columns: 1fr; }
+      .plan-stage-head { grid-template-columns: 1fr; gap: 3px; }
+      .plan-day { grid-template-columns: 44px 1fr; padding-right: 0; }
     }
     @media (max-width: 420px) {
       .route-mark span { display: none; }
@@ -250,9 +357,23 @@
       .ladder-row { grid-template-columns: 1fr; }
       .ladder-row .price { text-align: left; margin-top: 8px; }
     }
+    @media print {
+      body { background: #fff; color: #000; font-size: 10pt; }
+      .site-nav, .footer, .page:not(#cofounder), #cofounder > .page-hero, #cofounder .console-topline, #cofounder .console-stepper, #cofounder .console-panel:not(#plan-panel), #cofounder .console-panel-head, #cofounder .plan-save { display: none !important; }
+      #cofounder, #cofounder.page.active, #plan-panel, #plan-panel.active { display: block !important; }
+      #cofounder .section { padding: 0; border: 0; }
+      #cofounder .wrap { width: 100%; }
+      .console-shell { border: 0; box-shadow: none; }
+      .console-panel { padding: 0; }
+      .plan-brief { background: #fff; color: #000; border: 2px solid #000; break-inside: avoid; }
+      .plan-brief h3, .plan-brief p, .plan-fact span { color: #000; }
+      .plan-fact b, .plan-stage-head .stage-days, .plan-day-num { color: #000; }
+      .plan-days { grid-template-columns: 1fr 1fr; }
+      .plan-day { break-inside: avoid; }
+    }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .btn { transition: none; }
+      .btn, .progress-fill { transition: none; }
     }
   </style>
 </head>
@@ -264,6 +385,7 @@
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
       <nav id="primary-nav" class="nav-links" aria-label="Primary navigation">
         <a href="#home" data-route="home">Home</a>
+        <a href="#cofounder" data-route="cofounder">Co-founder</a>
         <a href="#method" data-route="method">The Method</a>
         <a href="#challenge" data-route="challenge">The Challenge</a>
         <a href="#about" data-route="about">About</a>
@@ -393,6 +515,126 @@
       <section class="section"><div class="wrap"><div class="section-head"><div class="section-num">THE CLOCK</div><div><h2>The clock runs.</h2><p class="lead">Thirty marked days. No endless ideation. No hiding in the build. Revenue or a kill—document it all.</p></div></div><div class="month-track" aria-label="30-day challenge timeline"><div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div></div><div class="finish-line">“Documented revenue or a documented kill—both count.”</div></div></section>
     </section>
 
+    <section id="cofounder" class="page" aria-labelledby="cofounder-title">
+      <div class="page-hero">
+        <div class="wrap">
+          <div class="eyebrow">The doing layer</div>
+          <h1 id="cofounder-title">Build with your<br />AI co-founder.</h1>
+          <p class="intro">Tell it the truth. Score the ideas. Get the 30-day mission. The AI plans. You move. The clock runs.</p>
+        </div>
+      </div>
+      <section class="section">
+        <div class="wrap">
+          <div class="console-shell" id="mission-console">
+            <div class="console-topline"><strong>HustleGPT mission console</strong><span>$100 / 30 days / one honest outcome</span></div>
+            <div class="console-stepper" aria-label="Co-founder workflow">
+              <button class="console-step active" type="button" data-console-step="1" aria-current="step"><b>Step 01</b><span>The Interview</span></button>
+              <button class="console-step" type="button" data-console-step="2" disabled><b>Step 02</b><span>Idea Scoring</span></button>
+              <button class="console-step" type="button" data-console-step="3" disabled><b>Step 03</b><span>30-Day Plan</span></button>
+            </div>
+
+            <section class="console-panel active" id="interview-panel" data-panel="1" aria-labelledby="interview-heading">
+              <div class="console-panel-head">
+                <div><div class="mission-code">Mission 01 / Founder signal</div><h2 id="interview-heading">The Interview</h2><p>No résumé theater. Give your co-founder the inputs it needs to build inside your real life.</p></div>
+                <div class="mission-code">Answer 6 prompts</div>
+              </div>
+              <div class="question-progress" aria-label="Interview progress"><div class="progress-track"><div class="progress-fill" id="interview-progress"></div></div><span class="progress-copy" id="interview-progress-copy">Question 1 of 6</span></div>
+              <div class="interview-frame">
+                <aside class="ai-bubble"><b>Co-founder says</b><span id="ai-prompt">Let’s start human. What should I call you?</span></aside>
+                <div>
+                  <div class="interview-question active" data-question="0">
+                    <label for="founder-name">What should I call you?</label>
+                    <p class="field-help">First name is enough.</p>
+                    <input class="console-input" id="founder-name" type="text" autocomplete="given-name" maxlength="60" placeholder="Your name" />
+                  </div>
+                  <div class="interview-question" data-question="1">
+                    <label for="founder-skills">What can you already do well?</label>
+                    <p class="field-help">Skills, experience, access, credibility—anything the market may value.</p>
+                    <textarea class="console-textarea" id="founder-skills" maxlength="500" placeholder="Example: sales, event production, bookkeeping, video editing…"></textarea>
+                  </div>
+                  <div class="interview-question" data-question="2">
+                    <label for="founder-hours">How many hours can you give this each week?</label>
+                    <p class="field-help">Protect the truth. A five-hour plan beats a fictional forty-hour plan.</p>
+                    <div class="input-unit"><input class="console-input" id="founder-hours" type="number" min="1" max="80" step="1" value="10" inputmode="numeric" /><span>hours</span></div>
+                  </div>
+                  <div class="interview-question" data-question="3">
+                    <label for="founder-budget">What is the starting budget?</label>
+                    <p class="field-help">The Challenge cap is $100. Use a smaller number if that is more honest.</p>
+                    <div class="input-unit"><input class="console-input" id="founder-budget" type="number" min="0" max="100" step="1" value="100" inputmode="decimal" /><span>USD</span></div>
+                  </div>
+                  <div class="interview-question" data-question="4">
+                    <label for="founder-constraints">What will you not do?</label>
+                    <p class="field-help">Name the hard lines: no cold calls, no inventory, no camera, no weekends—whatever is real.</p>
+                    <textarea class="console-textarea" id="founder-constraints" maxlength="500" placeholder="My non-negotiables are…"></textarea>
+                  </div>
+                  <div class="interview-question" data-question="5">
+                    <label for="founder-interests">What keeps your attention?</label>
+                    <p class="field-help">Markets, communities, problems, crafts, or industries you would still care about on day 20.</p>
+                    <textarea class="console-textarea" id="founder-interests" maxlength="500" placeholder="I keep coming back to…"></textarea>
+                  </div>
+                  <div class="console-actions">
+                    <button class="btn btn-quiet" id="interview-back" type="button" hidden>← Back</button>
+                    <button class="btn btn-primary" id="interview-next" type="button">Continue →</button>
+                  </div>
+                  <p id="interview-status" class="field-help" role="status" aria-live="polite"></p>
+                </div>
+              </div>
+            </section>
+
+            <section class="console-panel" id="scoring-panel" data-panel="2" aria-labelledby="scoring-heading">
+              <div class="console-panel-head">
+                <div><div class="mission-code">Mission 02 / Day-12 gate</div><h2 id="scoring-heading">Idea Scoring</h2><p>Enter one to three ideas. Score the evidence, not your attachment. A high score earns a validation sprint—not applause.</p></div>
+                <div class="mission-code">5 criteria / 25 points</div>
+              </div>
+              <div class="idea-grid" id="idea-grid">
+                <article class="idea-card" data-idea="0">
+                  <div class="idea-card-head"><div class="idea-number">01</div><input class="console-input idea-name" type="text" maxlength="120" aria-label="Business idea 1" placeholder="Describe business idea 1" /><div class="score-total"><b>15</b><span>/ 25</span></div></div>
+                  <div class="score-list">
+                    <div class="score-row"><label for="idea-0-demand">Demand evidence</label><input class="score-range" id="idea-0-demand" data-criterion="demand" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-0-speed">Speed to first dollar</label><input class="score-range" id="idea-0-speed" data-criterion="speed" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-0-fit">Fit with your skills</label><input class="score-range" id="idea-0-fit" data-criterion="fit" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-0-cost">Cost vs. budget</label><input class="score-range" id="idea-0-cost" data-criterion="cost" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-0-repeat">Repeatability</label><input class="score-range" id="idea-0-repeat" data-criterion="repeat" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                  </div>
+                  <div class="verdict-line"><span class="verdict">ADD IDEA</span><p class="verdict-copy">Name the idea, then score what is true today.</p></div>
+                </article>
+                <article class="idea-card" data-idea="1">
+                  <div class="idea-card-head"><div class="idea-number">02</div><input class="console-input idea-name" type="text" maxlength="120" aria-label="Business idea 2" placeholder="Describe business idea 2 (optional)" /><div class="score-total"><b>15</b><span>/ 25</span></div></div>
+                  <div class="score-list">
+                    <div class="score-row"><label for="idea-1-demand">Demand evidence</label><input class="score-range" id="idea-1-demand" data-criterion="demand" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-1-speed">Speed to first dollar</label><input class="score-range" id="idea-1-speed" data-criterion="speed" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-1-fit">Fit with your skills</label><input class="score-range" id="idea-1-fit" data-criterion="fit" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-1-cost">Cost vs. budget</label><input class="score-range" id="idea-1-cost" data-criterion="cost" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-1-repeat">Repeatability</label><input class="score-range" id="idea-1-repeat" data-criterion="repeat" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                  </div>
+                  <div class="verdict-line"><span class="verdict">ADD IDEA</span><p class="verdict-copy">Name the idea, then score what is true today.</p></div>
+                </article>
+                <article class="idea-card" data-idea="2">
+                  <div class="idea-card-head"><div class="idea-number">03</div><input class="console-input idea-name" type="text" maxlength="120" aria-label="Business idea 3" placeholder="Describe business idea 3 (optional)" /><div class="score-total"><b>15</b><span>/ 25</span></div></div>
+                  <div class="score-list">
+                    <div class="score-row"><label for="idea-2-demand">Demand evidence</label><input class="score-range" id="idea-2-demand" data-criterion="demand" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-2-speed">Speed to first dollar</label><input class="score-range" id="idea-2-speed" data-criterion="speed" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-2-fit">Fit with your skills</label><input class="score-range" id="idea-2-fit" data-criterion="fit" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-2-cost">Cost vs. budget</label><input class="score-range" id="idea-2-cost" data-criterion="cost" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                    <div class="score-row"><label for="idea-2-repeat">Repeatability</label><input class="score-range" id="idea-2-repeat" data-criterion="repeat" type="range" min="1" max="5" value="3" /><output class="score-output">3</output></div>
+                  </div>
+                  <div class="verdict-line"><span class="verdict">ADD IDEA</span><p class="verdict-copy">Name the idea, then score what is true today.</p></div>
+                </article>
+              </div>
+              <div class="winner-box" id="winner-box" aria-live="polite"><div><div class="mission-code">Current winner</div><h3 id="winner-name">Add an idea to start the gate.</h3><p id="winner-note">The strongest evidence wins. A tie goes to the first idea entered.</p></div><div class="winner-score" id="winner-score">—</div></div>
+              <div class="console-actions"><button class="btn btn-quiet" type="button" data-go-step="1">← Edit interview</button><button class="btn btn-primary" id="generate-plan" type="button">Generate 30-day plan →</button></div>
+              <p id="score-status" class="field-help" role="status" aria-live="polite"></p>
+            </section>
+
+            <section class="console-panel" id="plan-panel" data-panel="3" aria-labelledby="plan-heading">
+              <div class="console-panel-head"><div><div class="mission-code">Mission 03 / Execution clock</div><h2 id="plan-heading">The 30-Day Plan</h2><p>One concrete move each day. One definition of done. No hiding in “research.”</p></div><div class="mission-code">Idea → Validate → Build → Launch</div></div>
+              <div id="plan-output"><div class="empty-plan">Complete the interview and score at least one idea to generate your mission.</div></div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </section>
+
     <section id="proof" class="page" aria-labelledby="proof-title">
       <div class="page-hero"><div class="wrap"><div class="eyebrow">The build feed</div><h1 id="proof-title">Show the work.</h1><p class="intro">This feed is waiting for real challenge builds. The entries below demonstrate the format only—they are examples, not participant results.</p></div></div>
       <section class="section"><div class="wrap"><div class="feed">
@@ -423,7 +665,7 @@
     <div class="wrap">
       <div class="footer-grid">
         <div class="signoff">Stop planning.<br />Start proving.</div>
-        <div class="footer-links"><a href="#method">The Method</a><a href="#challenge">The Challenge</a><a href="#about">About</a><a href="#proof">Proof</a><a href="#faq">FAQ</a><a href="mailto:hello@hustlegpt.com">hello@hustlegpt.com</a></div>
+        <div class="footer-links"><a href="#cofounder">Co-founder</a><a href="#method">The Method</a><a href="#challenge">The Challenge</a><a href="#about">About</a><a href="#proof">Proof</a><a href="#faq">FAQ</a><a href="mailto:hello@hustlegpt.com">hello@hustlegpt.com</a></div>
       </div>
       <div class="disclaimer">HustleGPT is an independent brand and is not affiliated with, endorsed by, or sponsored by OpenAI. “GPT” is used descriptively in the brand name; OpenAI and related marks belong to their respective owners. All product prices shown beyond the free challenge are working assumptions.</div>
     </div>
@@ -432,7 +674,7 @@
   <script>
     (function () {
       "use strict";
-      var validRoutes = ["home", "method", "challenge", "about", "proof", "faq"];
+      var validRoutes = ["home", "cofounder", "method", "challenge", "about", "proof", "faq"];
       var pages = document.querySelectorAll(".page");
       var links = document.querySelectorAll("[data-route]");
       var menuButton = document.querySelector(".menu-button");
@@ -459,6 +701,355 @@
         menuButton.setAttribute("aria-expanded", String(open));
       });
       window.addEventListener("hashchange", route);
+
+      var stepButtons = document.querySelectorAll(".console-step");
+      var panels = document.querySelectorAll(".console-panel");
+      var questions = document.querySelectorAll(".interview-question");
+      var questionIndex = 0;
+      var highestStep = 1;
+      var prompts = [
+        "Let’s start human. What should I call you?",
+        "Inventory the leverage you already own. What can you do well?",
+        "A plan must fit the calendar you actually have.",
+        "Capital is a constraint, not a personality. Name the real number.",
+        "Good constraints prevent bad plans. Draw the hard lines.",
+        "Interest keeps you moving after novelty leaves. What holds yours?"
+      ];
+      var interviewFields = [
+        document.getElementById("founder-name"),
+        document.getElementById("founder-skills"),
+        document.getElementById("founder-hours"),
+        document.getElementById("founder-budget"),
+        document.getElementById("founder-constraints"),
+        document.getElementById("founder-interests")
+      ];
+      var progressFill = document.getElementById("interview-progress");
+      var progressCopy = document.getElementById("interview-progress-copy");
+      var aiPrompt = document.getElementById("ai-prompt");
+      var interviewBack = document.getElementById("interview-back");
+      var interviewNext = document.getElementById("interview-next");
+      var interviewStatus = document.getElementById("interview-status");
+      var scoreStatus = document.getElementById("score-status");
+      var currentWinner = null;
+      var lastPlanText = "";
+
+      function switchConsoleStep(step) {
+        if (step > highestStep) { return; }
+        panels.forEach(function (panel) { panel.classList.toggle("active", Number(panel.getAttribute("data-panel")) === step); });
+        stepButtons.forEach(function (button) {
+          var buttonStep = Number(button.getAttribute("data-console-step"));
+          button.classList.toggle("active", buttonStep === step);
+          button.classList.toggle("complete", buttonStep < highestStep || buttonStep === step);
+          button.disabled = buttonStep > highestStep;
+          if (buttonStep === step) { button.setAttribute("aria-current", "step"); } else { button.removeAttribute("aria-current"); }
+        });
+        var consoleShell = document.getElementById("mission-console");
+        if (consoleShell && window.location.hash === "#cofounder") {
+          consoleShell.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      function showQuestion(index) {
+        questionIndex = index;
+        questions.forEach(function (question, i) { question.classList.toggle("active", i === questionIndex); });
+        progressFill.style.width = (((questionIndex + 1) / questions.length) * 100) + "%";
+        progressCopy.textContent = "Question " + (questionIndex + 1) + " of " + questions.length;
+        aiPrompt.textContent = prompts[questionIndex];
+        interviewBack.hidden = questionIndex === 0;
+        interviewNext.textContent = questionIndex === questions.length - 1 ? "Score my ideas →" : "Continue →";
+        interviewStatus.textContent = "";
+        interviewFields[questionIndex].focus();
+      }
+
+      function validInterviewAnswer(index) {
+        var field = interviewFields[index];
+        var value = field.value.trim();
+        if (index === 2) {
+          return Number(value) >= 1 && Number(value) <= 80;
+        }
+        if (index === 3) {
+          return value !== "" && Number(value) >= 0 && Number(value) <= 100;
+        }
+        return value.length > 0;
+      }
+
+      interviewNext.addEventListener("click", function () {
+        if (!validInterviewAnswer(questionIndex)) {
+          interviewStatus.textContent = questionIndex === 2 ? "Enter a real weekly commitment between 1 and 80 hours." : questionIndex === 3 ? "Enter a starting budget from $0 to $100." : "Give your co-founder an honest answer before moving on.";
+          interviewFields[questionIndex].focus();
+          return;
+        }
+        if (questionIndex < questions.length - 1) {
+          showQuestion(questionIndex + 1);
+        } else {
+          highestStep = Math.max(highestStep, 2);
+          switchConsoleStep(2);
+          updateScores();
+        }
+      });
+      interviewBack.addEventListener("click", function () { if (questionIndex > 0) { showQuestion(questionIndex - 1); } });
+      interviewFields.forEach(function (field) {
+        field.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" && field.tagName !== "TEXTAREA") { event.preventDefault(); interviewNext.click(); }
+        });
+      });
+      stepButtons.forEach(function (button) {
+        button.addEventListener("click", function () { switchConsoleStep(Number(button.getAttribute("data-console-step"))); });
+      });
+      document.querySelectorAll("[data-go-step]").forEach(function (button) {
+        button.addEventListener("click", function () { switchConsoleStep(Number(button.getAttribute("data-go-step"))); });
+      });
+
+      function scoreIdea(card) {
+        var name = card.querySelector(".idea-name").value.trim();
+        var values = {};
+        var total = 0;
+        card.querySelectorAll(".score-range").forEach(function (range) {
+          var value = Number(range.value);
+          values[range.getAttribute("data-criterion")] = value;
+          range.nextElementSibling.textContent = String(value);
+          total += value;
+        });
+        card.querySelector(".score-total b").textContent = String(total);
+        var verdict = "";
+        var copy = "Name the idea, then score what is true today.";
+        if (name) {
+          if (total < 15 || values.demand === 1 || values.cost === 1) {
+            verdict = "KILL";
+            copy = "Too weak for this budget and clock. Document the lesson and move on.";
+          } else if (total >= 21 && values.demand >= 4 && values.fit >= 3 && values.cost >= 3) {
+            verdict = "PURSUE";
+            copy = "Strong enough to earn a real validation sprint. Not permission to overbuild.";
+          } else {
+            verdict = "TEST";
+            copy = "Promising, not proven. Run the cheapest demand test before committing.";
+          }
+        }
+        var verdictEl = card.querySelector(".verdict");
+        verdictEl.textContent = verdict || "ADD IDEA";
+        verdictEl.className = "verdict" + (verdict ? " " + verdict.toLowerCase() : "");
+        card.querySelector(".verdict-copy").textContent = copy;
+        card.classList.toggle("active-idea", Boolean(name));
+        return { card: card, name: name, total: total, verdict: verdict, values: values };
+      }
+
+      function updateScores() {
+        var scored = [];
+        document.querySelectorAll(".idea-card").forEach(function (card) {
+          var result = scoreIdea(card);
+          if (result.name) { scored.push(result); }
+        });
+        scored.sort(function (a, b) { return b.total - a.total; });
+        currentWinner = scored.length ? scored[0] : null;
+        var winnerName = document.getElementById("winner-name");
+        var winnerNote = document.getElementById("winner-note");
+        var winnerScore = document.getElementById("winner-score");
+        if (!currentWinner) {
+          winnerName.textContent = "Add an idea to start the gate.";
+          winnerNote.textContent = "The strongest evidence wins. A tie goes to the first idea entered.";
+          winnerScore.textContent = "—";
+        } else {
+          winnerName.textContent = currentWinner.name;
+          winnerScore.textContent = currentWinner.total + "/25";
+          winnerNote.textContent = currentWinner.verdict === "PURSUE" ? "PURSUE — this idea clears the gate for validation." : currentWinner.verdict === "TEST" ? "TEST — this idea leads, but evidence must earn the commit." : "KILL — this is the highest score, but it has not cleared the gate.";
+        }
+      }
+
+      document.querySelectorAll(".score-range, .idea-name").forEach(function (control) {
+        control.addEventListener("input", updateScores);
+      });
+
+      function short(value, fallback) {
+        var clean = String(value || "").trim();
+        if (!clean) { return fallback; }
+        return clean.length > 110 ? clean.slice(0, 107) + "…" : clean;
+      }
+
+      function planStages(data) {
+        var idea = data.idea;
+        var skills = short(data.skills, "your current skills");
+        var interests = short(data.interests, "the market you know best");
+        var constraints = short(data.constraints, "your stated non-negotiables");
+        var budget = "$" + data.budget;
+        return [
+          { name: "Idea", days: "Days 1–5", items: [
+            ["Write one sentence that names the customer, urgent problem, and paid result for “" + idea + ".”", "One sentence a stranger can repeat without explanation."],
+            ["Map " + skills + " to one deliverable you can produce for this idea without learning a new profession.", "One deliverable that uses an existing strength."],
+            ["Create a " + budget + " budget sheet and reserve at least half until demand is proven. Respect: " + constraints + ".", "Every planned dollar has a purpose and the validation reserve is untouched."],
+            ["Review ten comparable offers serving " + interests + "; record price, promise, proof, and where customers respond.", "A ten-row evidence sheet with no blank columns."],
+            ["List the five riskiest assumptions behind the idea and rank them by what could kill it fastest.", "One ranked list and a cheapest test beside each assumption."]
+          ]},
+          { name: "Validate", days: "Days 6–12", items: [
+            ["Build a list of 20 reachable people who match the intended customer—not friends chosen to be polite.", "Twenty names or handles with a reason each person fits."],
+            ["Write a five-question interview script about current behavior, pain, spending, alternatives, and urgency.", "Five neutral questions with no sales pitch hidden inside."],
+            ["Invite the first ten prospects to a 15-minute problem interview.", "Ten direct invitations sent and logged."],
+            ["Run the first three interviews; capture exact phrases instead of summaries.", "Three completed conversations with verbatim notes."],
+            ["Run three more interviews and count repeated pains, workarounds, and buying signals.", "Six total conversations and a simple signal tally."],
+            ["Publish a one-page offer for “" + idea + "” with one result, one price hypothesis, and one action to take.", "A live page or shareable one-sheet that asks for a real next step."],
+            ["Complete four final interviews, compare the evidence to the scorecard, then write KILL or COMMIT with three reasons.", "Ten total interviews and a dated Day-12 decision." ]
+          ]},
+          { name: "Build", days: "Days 13–22", items: [
+            ["Define the smallest paid version of “" + idea + "” that produces the promised result once.", "A scope with one customer, one outcome, and explicit exclusions."],
+            ["Turn delivery into a step-by-step workflow from intake through handoff.", "A sequence another person could follow without guessing."],
+            ["Choose only the tools required for delivery and keep total committed spend within " + budget + ".", "A tool list with cost, purpose, and a zero-cost fallback."],
+            ["Build the first ugly working version; stop when the core result can be delivered.", "One end-to-end draft exists outside your head."],
+            ["Run the workflow yourself and mark every confusing, slow, or fragile step.", "A completed dry run with a defect list."],
+            ["Recruit one target user for a supervised test of the draft.", "One test scheduled with a person who matches the customer."],
+            ["Deliver the test version and observe where the user hesitates or asks for help.", "One completed test with behavior notes, not compliments."],
+            ["Fix the three defects most likely to block the promised result.", "The top three blockers are resolved and rechecked."],
+            ["Write the final offer page: customer, problem, result, scope, price, proof, and action.", "One plain-language offer that can be understood in 60 seconds."],
+            ["Document the manual intake, payment, delivery, and follow-up process.", "A complete operating checklist ready for the first buyer."]
+          ]},
+          { name: "Launch", days: "Days 23–30", items: [
+            ["Build a launch list of 30 qualified prospects connected to the problem “" + idea + "” solves.", "Thirty prospects with a specific reason each one belongs."],
+            ["Write one direct outreach message that names the problem, result, proof, and next step.", "A message under 120 words with one clear ask."],
+            ["Send the first ten messages and log every reply, objection, and silence.", "Ten sends recorded with timestamps and outcomes."],
+            ["Follow up once with the first group, then send the revised pitch to the next ten.", "Twenty total prospects reached and one revision documented."],
+            ["Group the objections by trust, timing, price, or fit; revise only what the evidence supports.", "An objection tally and one evidence-based offer change."],
+            ["Send the final ten messages using the strongest version of the offer.", "Thirty total prospects reached; every outcome logged."],
+            ["Deliver the first paid order—or run one live sales demo if no one has bought yet.", "A fulfilled order or a recorded demo with a direct ask for the sale."],
+            ["Total revenue, spend, conversations, conversion, and lessons. Publish COMMIT, PIVOT, or KILL with the numbers.", "A final accounting that another founder could audit." ]
+          ]}
+        ];
+      }
+
+      function make(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) { node.className = className; }
+        if (typeof text !== "undefined") { node.textContent = text; }
+        return node;
+      }
+
+      function buildPlanText(data, stages) {
+        var lines = [
+          "HUSTLEGPT — 30-DAY MISSION",
+          "The AI plans. You move. The clock runs.",
+          "",
+          "Founder: " + data.name,
+          "Winning idea: " + data.idea,
+          "Time: " + data.hours + " hours/week",
+          "Budget: $" + data.budget,
+          "Skills: " + data.skills,
+          "Constraints: " + data.constraints,
+          "Interests: " + data.interests,
+          "Gate verdict: " + data.verdict + " (" + data.score + "/25)",
+          ""
+        ];
+        var day = 1;
+        stages.forEach(function (stage) {
+          lines.push(stage.name.toUpperCase() + " — " + stage.days);
+          stage.items.forEach(function (item) {
+            lines.push("Day " + day + ": " + item[0]);
+            lines.push("Done looks like: " + item[1]);
+            lines.push("");
+            day += 1;
+          });
+        });
+        lines.push("Documented revenue or a documented kill—both count.");
+        return lines.join("\n");
+      }
+
+      function renderPlan(data) {
+        var output = document.getElementById("plan-output");
+        var stages = planStages(data);
+        output.textContent = "";
+
+        var brief = make("div", "plan-brief");
+        var briefCopy = make("div");
+        briefCopy.appendChild(make("div", "mission-code", data.name + "’s mission"));
+        briefCopy.appendChild(make("h3", "", data.idea));
+        briefCopy.appendChild(make("p", "", "Built for " + data.hours + " hours a week and a $" + data.budget + " starting budget. Current gate: " + data.verdict + " at " + data.score + "/25. The market still gets the final vote."));
+        var facts = make("div", "plan-facts");
+        [["Skills to use", short(data.skills, "Not stated")], ["Interests", short(data.interests, "Not stated")], ["Hard lines", short(data.constraints, "Not stated")], ["Finish line", "Revenue or a documented kill"]].forEach(function (fact) {
+          var factEl = make("div", "plan-fact");
+          factEl.appendChild(make("b", "", fact[0]));
+          factEl.appendChild(make("span", "", fact[1]));
+          facts.appendChild(factEl);
+        });
+        brief.appendChild(briefCopy);
+        brief.appendChild(facts);
+        output.appendChild(brief);
+
+        var day = 1;
+        stages.forEach(function (stage) {
+          var stageEl = make("section", "plan-stage");
+          var head = make("div", "plan-stage-head");
+          head.appendChild(make("div", "stage-days", stage.days));
+          head.appendChild(make("h3", "", stage.name));
+          stageEl.appendChild(head);
+          var daysEl = make("div", "plan-days");
+          stage.items.forEach(function (item) {
+            var dayEl = make("article", "plan-day");
+            dayEl.appendChild(make("div", "plan-day-num", String(day).padStart(2, "0")));
+            var task = make("div");
+            task.appendChild(make("h4", "", item[0]));
+            var done = make("p");
+            var label = make("b", "", "Done looks like: ");
+            done.appendChild(label);
+            done.appendChild(document.createTextNode(item[1]));
+            task.appendChild(done);
+            dayEl.appendChild(task);
+            daysEl.appendChild(dayEl);
+            day += 1;
+          });
+          stageEl.appendChild(daysEl);
+          output.appendChild(stageEl);
+        });
+
+        var save = make("div", "plan-save");
+        save.appendChild(make("p", "", "Take the plan with you, then start the free $100 Challenge. The clock only matters when you move."));
+        var actions = make("div", "actions");
+        actions.style.marginTop = "0";
+        var download = make("button", "btn btn-secondary", "Download plan (.txt)");
+        download.type = "button";
+        download.id = "download-plan";
+        var join = make("a", "btn btn-primary", "Join the free challenge");
+        join.href = "mailto:hello@hustlegpt.com?subject=I%27m%20in%20for%20the%20%24100%20Challenge&body=I%27ve%20built%20my%2030-day%20plan.%20Please%20send%20me%20the%20next%20steps.";
+        actions.appendChild(download);
+        actions.appendChild(join);
+        save.appendChild(actions);
+        output.appendChild(save);
+
+        lastPlanText = buildPlanText(data, stages);
+        download.addEventListener("click", function () {
+          var blob = new Blob([lastPlanText], { type: "text/plain;charset=utf-8" });
+          var url = URL.createObjectURL(blob);
+          var link = document.createElement("a");
+          link.href = url;
+          link.download = "hustlegpt-30-day-plan.txt";
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          setTimeout(function () { URL.revokeObjectURL(url); }, 0);
+        });
+      }
+
+      document.getElementById("generate-plan").addEventListener("click", function () {
+        updateScores();
+        if (!currentWinner) {
+          scoreStatus.textContent = "Add and score at least one business idea before generating the plan.";
+          document.querySelector(".idea-name").focus();
+          return;
+        }
+        scoreStatus.textContent = "";
+        var data = {
+          name: interviewFields[0].value.trim(),
+          skills: interviewFields[1].value.trim(),
+          hours: interviewFields[2].value.trim(),
+          budget: interviewFields[3].value.trim(),
+          constraints: interviewFields[4].value.trim(),
+          interests: interviewFields[5].value.trim(),
+          idea: currentWinner.name,
+          verdict: currentWinner.verdict,
+          score: currentWinner.total
+        };
+        renderPlan(data);
+        highestStep = 3;
+        switchConsoleStep(3);
+      });
+
+      updateScores();
+      showQuestion(0);
       route();
     }());
   </script>
